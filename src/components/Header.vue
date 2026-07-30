@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <div class="conatiner h-[40px] flex items-center">
+        <div class="conatiner h-[80px] flex items-center">
             <h1 class="header__logo">
                 <RouterLink to="/">Commit</RouterLink>
             </h1>

@@ -14,12 +14,18 @@
                 <SortDropdown :options="sortOption" :selected="sortSelected" size="sm" @change="changeSort"/>
             </div>
         </div>
-        <PostCardList />
+
+        <div class="home__postCard">
+            <PostCardList :posts="tempPosts" />
+        </div>
     </main>
+
+    <div ref="loadMoreTrigger" class="h-20 bg-black"></div>
+    <div v-if="loading">데이터 불러오는중..</div>
 </template>
 
 <script setup>
-    import { ref } from 'vue'
+    import { ref, onMounted, onUnmounted } from 'vue'
     import PostCardList from '@/components/PostCardList.vue'
     import SortDropdown from '@/components/SortDropdown.vue'
     import { Clock, TrendingUp, Rss } from "lucide-vue-next"
@@ -44,4 +50,156 @@
     const changeSort = value => {
         sortSelected.value = value
     }
+
+    // 페이지 스크롤 관련 설정
+    const page = ref(1)
+    const loading = ref(false)
+    const hasNext = ref(true)
+    const loadMoreTrigger = ref(null)
+
+    const tempPosts = ref([])
+
+    const loadPosts = () => {
+        if( loading.value || !hasNext.value ) return
+
+        // 로딩시작
+        loading.value = true
+
+        // 데이터 호출
+        const tempData = postDatas;
+
+        tempPosts.value.push(...tempData)
+        page.value++
+
+        // 마지막 페이지처리
+
+        // 로딩 종료
+        loading.value = false
+    }
+
+    let observer
+
+    onMounted(() => {
+        loadPosts()
+
+        observer = new IntersectionObserver(([entry]) => {
+            if( entry.isIntersecting ) {
+                loadPosts()
+            }
+        })
+
+        observer.observe(loadMoreTrigger.value)
+    })
+
+    onUnmounted(() => {
+        observer.disconnect()
+    })
+
+    // 카드 리스트 임시 데이터
+    const postDatas = [
+        {
+            id: 1,
+            thumbnail: 'https://placehold.co/300x200',
+            subject: '테스트 제목1111',
+            details: '이건 테스트 입니다. 1번 글 입니다.',
+            date: '2026-07-01 15:44:52',
+            comment: 3,
+            user: {
+                thumbnail: 'https://placehold.co/100x100',
+                nickname: '테스트 유저'
+            },
+            like: 10
+        },
+        {
+            id: 2,
+            thumbnail: 'https://placehold.co/300x200',
+            subject: '테스트 222222',
+            details: '이건 테스트 입니다. 2번 글 입니다!!!',
+            date: '2026-07-10 16:33:52',
+            comment: 2,
+            user: {
+                thumbnail: 'https://placehold.co/100x100',
+                nickname: '테스트 유저2'
+            },
+            like: 2
+        },
+        {
+            id: 3,
+            thumbnail: 'https://placehold.co/300x200',
+            subject: '테스트 222222',
+            details: '이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!이건 테스트 입니다. 2번 글 입니다!!!',
+            date: '2026-07-10 16:33:52',
+            comment: 2,
+            user: {
+                thumbnail: 'https://placehold.co/100x100',
+                nickname: '테스트 유저2'
+            },
+            like: 2
+        },
+        {
+            id: 4,
+            thumbnail: 'https://placehold.co/300x200',
+            subject: '테스트 222222',
+            details: '이건 테스트 입니다. 2번 글 입니다!!!',
+            date: '2026-07-10 16:33:52',
+            comment: 2,
+            user: {
+                thumbnail: 'https://placehold.co/100x100',
+                nickname: '테스트 유저2'
+            },
+            like: 2
+        },
+        {
+            id: 5,
+            thumbnail: 'https://placehold.co/300x200',
+            subject: '테스트 222222',
+            details: '이건 테스트 입니다. 2번 글 입니다!!!',
+            date: '2026-07-10 16:33:52',
+            comment: 2,
+            user: {
+                thumbnail: 'https://placehold.co/100x100',
+                nickname: '테스트 유저2'
+            },
+            like: 2
+        },
+        {
+            id: 6,
+            thumbnail: 'https://placehold.co/300x200',
+            subject: '테스트 222222',
+            details: '이건 테스트 입니다. 2번 글 입니다!!!',
+            date: '2026-07-10 16:33:52',
+            comment: 2,
+            user: {
+                thumbnail: 'https://placehold.co/100x100',
+                nickname: '테스트 유저2'
+            },
+            like: 2
+        },
+        {
+            id: 7,
+            thumbnail: 'https://placehold.co/300x200',
+            subject: '테스트 222222',
+            details: '이건 테스트 입니다. 2번 글 입니다!!!',
+            date: '2026-07-10 16:33:52',
+            comment: 2,
+            user: {
+                thumbnail: 'https://placehold.co/100x100',
+                nickname: '테스트 유저2'
+            },
+            like: 2
+        },
+        {
+            id: 8,
+            thumbnail: 'https://placehold.co/300x200',
+            subject: '테스트 222222',
+            details: '이건 테스트 입니다. 2번 글 입니다!!!',
+            date: '2026-07-10 16:33:52',
+            comment: 2,
+            user: {
+                thumbnail: 'https://placehold.co/100x100',
+                nickname: '테스트 유저2'
+            },
+            like: 2
+        }
+    ]
 </script>

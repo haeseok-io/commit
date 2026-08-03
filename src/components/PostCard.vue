@@ -6,10 +6,10 @@
             </a>
         </div>
         <div class="card__content p-4">
-            <a href="" class="block min-h-[150px]">
-                <h3 class="card__subject font-semibold">{{ data.subject }}</h3>
-                <div class="card__description text-sm">
-                    <p>{{ data.details }}</p>
+            <a href="" class="block">
+                <h3 class="card__subject font-semibold mb-2">{{ data.subject }}</h3>
+                <div class="card__description h-[70px] text-sm">
+                    <p class="line-clamp-3">{{ data.details }}</p>
                 </div>
             </a>
         </div>

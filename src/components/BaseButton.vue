@@ -46,6 +46,8 @@
     // 버튼의 색상 테마를 지정
     const themeClass = computed(() => {
         switch(props.theme) {
+            case 'transparent':
+                return 'bg-transparent bd-none'
             case 'line':
                 return 'bg-white bd-black'
                 break;

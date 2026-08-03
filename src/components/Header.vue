@@ -1,13 +1,15 @@
 <template>
-    <header class="header">
+    <header class="header mb-5">
         <div class="conatiner h-[80px] flex items-center">
             <h1 class="header__logo">
-                <RouterLink to="/">Commit</RouterLink>
+                <RouterLink to="/">
+                    <img src="@/assets/image/logo-horizon.svg" alt="">
+                </RouterLink>
             </h1>
             <div class="header__menu ml-auto">
                 <nav>
                     <ul v-if="!auth.isLogin">
-                        <li><BaseButton @click="auth.login('test','test')">로그인</BaseButton></li>
+                        <li><BaseButton to="/login">로그인</BaseButton></li>
                     </ul>
 
                     <ul v-else class="flex">

@@ -10,8 +10,8 @@
             <div class="login__content w-[800px] h-full bg-white flex items-center px-10">
                 <AuthForm
                     v-model="form"
-                    mode="login"
-                    @submit="login"
+                    mode="register"
+                    @submit="register"
                 />
             </div>
         </div>
@@ -32,7 +32,7 @@
         email: { value: '', error: '' }
     })
 
-    const login = () => {
+    const register = () => {
 
         // 유효성 체크
         if( !form.email.value ) {
@@ -45,8 +45,8 @@
         }
 
         // 로그인 성공 처리
-        auth.login('test', 'test');
-        router.push('/')
+        alert('로그인 완료!야호!')
+        router.push('/login')
     }
 </script>
 

@@ -11,7 +11,7 @@
 
     const route = useRoute()
 
-    const hideLayoutPages = ['login']
+    const hideLayoutPages = ['login', 'register']
     const isHideLayout = () => {
         return hideLayoutPages.includes(route.name)
     }

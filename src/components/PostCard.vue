@@ -21,7 +21,7 @@
                 </a>
             </div>
             <div class="card__like flex items-center text-xs">
-                <iconHeart :size="14" />
+                <Heart :size="14" />
                 <span class="ml-1">{{ data.like }}</span>
             </div>
         </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-    import { Heart as iconHeart } from 'lucide-vue-next'
+    import { Heart } from '@lucide/vue'
 
     defineProps({
         data: {

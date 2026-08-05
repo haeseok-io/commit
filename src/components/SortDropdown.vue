@@ -35,7 +35,7 @@
 
 <script setup>
     import { ref, computed } from 'vue'
-    import { ChevronDown, Check } from 'lucide-vue-next'
+    import { ChevronDown, Check } from '@lucide/vue'
 
     const isOpen = ref(false)
     const emit = defineEmits(['change'])

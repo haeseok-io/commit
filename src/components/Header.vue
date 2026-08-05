@@ -13,7 +13,7 @@
                     </ul>
 
                     <ul v-else class="flex">
-                        <li><iconBell /></li>
+                        <li><Bell /></li>
                         <li><BaseButton to="/commit">새 글 작성</BaseButton></li>
                         <li><BaseButton @click="auth.logout">로그아웃</BaseButton></li>
                     </ul>
@@ -25,7 +25,7 @@
 
 <script setup>
     import { useAuthStore } from '@/stores/auth'
-    import { Bell as iconBell } from 'lucide-vue-next'
+    import { Bell } from '@lucide/vue'
     import BaseButton from './BaseButton.vue';
 
     const auth = useAuthStore();

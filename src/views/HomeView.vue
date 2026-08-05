@@ -28,7 +28,7 @@
     import { ref, onMounted, onUnmounted } from 'vue'
     import PostCardList from '@/components/PostCardList.vue'
     import SortDropdown from '@/components/SortDropdown.vue'
-    import { Clock, TrendingUp, Rss } from "lucide-vue-next"
+    import { Clock, TrendingUp, Rss } from "@lucide/vue"
 
     // 탭 관련 설정
     const activeTab = ref('latest')
